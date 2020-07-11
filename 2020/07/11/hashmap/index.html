@@ -204,7 +204,7 @@
           <div class="post-content mx-auto" id="post">
             
             <article class="markdown-body">
-              <p>###我们来分析jdk1.8中hashmap的源码</p>
+              <p>我们来分析jdk1.8中hashmap的源码</p>
 <pre><code class="hljs java"><span class="hljs-comment">/*</span>
 <span class="hljs-comment"> * Copyright (c) 1997, 2017, Oracle and/or its affiliates. All rights reserved.</span>
 <span class="hljs-comment"> * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.</span>
@@ -231,7 +231,11 @@
 <span class="hljs-comment"> * unsynchronized and permits nulls.)  This class makes no guarantees as to</span>
 <span class="hljs-comment"> * the order of the map; in particular, it does not guarantee that the order</span>
 <span class="hljs-comment"> * will remain constant over time.</span>
-<span class="hljs-comment"> *</span>
+<span class="hljs-comment"> *  </span>
+<span class="hljs-comment">    hashmap允许key和value等于null</span>
+<span class="hljs-comment">    hashmap和hashtable的区别在于，hashmap线程不安全并且允许null</span>
+<span class="hljs-comment">    放入map的数据是无序的</span>
+<span class="hljs-comment"></span>
 <span class="hljs-comment"> * &lt;p&gt;This implementation provides constant-time performance for the basic</span>
 <span class="hljs-comment"> * operations (&lt;tt&gt;get&lt;/tt&gt; and &lt;tt&gt;put&lt;/tt&gt;), assuming the hash function</span>
 <span class="hljs-comment"> * disperses the elements properly among the buckets.  Iteration over</span>
