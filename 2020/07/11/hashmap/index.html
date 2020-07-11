@@ -163,7 +163,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      12.2k 字
+      12.4k 字
     </span>
   
 
@@ -173,7 +173,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      241
+      243
        分钟
     </span>
   
@@ -292,6 +292,11 @@
 <span class="hljs-comment"> * are &#123;<span class="hljs-doctag">@link</span> Comparable&#125;, this class may use comparison order among</span>
 <span class="hljs-comment"> * keys to help break ties.</span>
 <span class="hljs-comment"> *</span>
+<span class="hljs-comment">    如果一个hashmap的实例中映射的数量很多，那么建造一个初始容量很大的hashmap比让hashmap</span>
+<span class="hljs-comment">    自动按照需要去rehash来扩容高效的多</span>
+<span class="hljs-comment">    如果许多key有相同的hashCode会降低hash table的性能</span>
+<span class="hljs-comment">    为了改善这一点，当key是Comparable的时候，我们可以利用key之间的比较顺序来帮助</span>
+<span class="hljs-comment"></span>
 <span class="hljs-comment"> * &lt;p&gt;&lt;strong&gt;Note that this implementation is not synchronized.&lt;/strong&gt;</span>
 <span class="hljs-comment"> * If multiple threads access a hash map concurrently, and at least one of</span>
 <span class="hljs-comment"> * the threads modifies the map structurally, it &lt;i&gt;must&lt;/i&gt; be</span>
@@ -301,7 +306,13 @@
 <span class="hljs-comment"> * structural modification.)  This is typically accomplished by</span>
 <span class="hljs-comment"> * synchronizing on some object that naturally encapsulates the map.</span>
 <span class="hljs-comment"> *</span>
-<span class="hljs-comment"> * If no such object exists, the map should be "wrapped" using the</span>
+<span class="hljs-comment">    hashmap是不同步的</span>
+<span class="hljs-comment">    如果多个线程并发访问hashmap，并且至少一个线程修改了hashmap的数据结构，这个线程必须是外部同步的</span>
+<span class="hljs-comment">    修改数据结构是指add或者delete一个或多个映射关系</span>
+<span class="hljs-comment">    仅仅是改变已有的key的value不算是修改数据结构</span>
+<span class="hljs-comment">    这通常是通过在自然封装映射的某个对象上同步来实现的。</span>
+<span class="hljs-comment"> </span>
+<span class="hljs-comment">* If no such object exists, the map should be "wrapped" using the</span>
 <span class="hljs-comment"> * &#123;<span class="hljs-doctag">@link</span> Collections#synchronizedMap Collections.synchronizedMap&#125;</span>
 <span class="hljs-comment"> * method.  This is best done at creation time, to prevent accidental</span>
 <span class="hljs-comment"> * unsynchronized access to the map:&lt;pre&gt;</span>
@@ -342,6 +353,10 @@
 <span class="hljs-comment"> * <span class="hljs-doctag">@see</span>     Hashtable</span>
 <span class="hljs-comment"> * <span class="hljs-doctag">@since</span>   1.2</span>
 <span class="hljs-comment"> */</span>
+    泛型：
+    K是key
+    V指的是value
+
 <span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">HashMap</span>&lt;<span class="hljs-title">K</span>,<span class="hljs-title">V</span>&gt; <span class="hljs-keyword">extends</span> <span class="hljs-title">AbstractMap</span>&lt;<span class="hljs-title">K</span>,<span class="hljs-title">V</span>&gt;</span>
 <span class="hljs-class">    <span class="hljs-keyword">implements</span> <span class="hljs-title">Map</span>&lt;<span class="hljs-title">K</span>,<span class="hljs-title">V</span>&gt;, <span class="hljs-title">Cloneable</span>, <span class="hljs-title">Serializable</span> </span>&#123;
 
