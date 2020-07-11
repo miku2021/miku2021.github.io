@@ -163,7 +163,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      11.9k 字
+      12.2k 字
     </span>
   
 
@@ -173,7 +173,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      237
+      241
        分钟
     </span>
   
@@ -245,6 +245,10 @@
 <span class="hljs-comment"> * capacity too high (or the load factor too low) if iteration performance is</span>
 <span class="hljs-comment"> * important.</span>
 <span class="hljs-comment"> *</span>
+<span class="hljs-comment">    如果哈希函数将元素正确地分散在桶中,get和put将消耗常量时间</span>
+<span class="hljs-comment">    迭代集合时所需要地时间与桶的数量和键值对的数量成正比</span>
+<span class="hljs-comment">    因此在对迭代性能有高要求的时候，不能把初始容量设的太高或者负载因子设的太低</span>
+<span class="hljs-comment"></span>
 <span class="hljs-comment"> * &lt;p&gt;An instance of &lt;tt&gt;HashMap&lt;/tt&gt; has two parameters that affect its</span>
 <span class="hljs-comment"> * performance: &lt;i&gt;initial capacity&lt;/i&gt; and &lt;i&gt;load factor&lt;/i&gt;.  The</span>
 <span class="hljs-comment"> * &lt;i&gt;capacity&lt;/i&gt; is the number of buckets in the hash table, and the initial</span>
@@ -256,6 +260,13 @@
 <span class="hljs-comment"> * structures are rebuilt) so that the hash table has approximately twice the</span>
 <span class="hljs-comment"> * number of buckets.</span>
 <span class="hljs-comment"> *</span>
+<span class="hljs-comment">    初始容量和负载因子影响着一个hashmap实例的性能</span>
+<span class="hljs-comment">    容量是指hash table的桶的个数</span>
+<span class="hljs-comment">    初始容量就是hash table创建时桶的数量</span>
+<span class="hljs-comment">    负载因子就是在hash table容量自动增长以前，衡量hash table是否满了的指标</span>
+<span class="hljs-comment">    当hash table的entries数量超过了负载因子和当前容量的乘积时，hash table 就会rehashed</span>
+<span class="hljs-comment">    rehashed时，内部数据结构重建，hash table的桶数大概是之前的两倍</span>
+<span class="hljs-comment">    </span>
 <span class="hljs-comment"> * &lt;p&gt;As a general rule, the default load factor (.75) offers a good</span>
 <span class="hljs-comment"> * tradeoff between time and space costs.  Higher values decrease the</span>
 <span class="hljs-comment"> * space overhead but increase the lookup cost (reflected in most of</span>
@@ -267,6 +278,11 @@
 <span class="hljs-comment"> * maximum number of entries divided by the load factor, no rehash</span>
 <span class="hljs-comment"> * operations will ever occur.</span>
 <span class="hljs-comment"> *</span>
+<span class="hljs-comment">    一般来说，负载因子为0.75时提供了一个在时间和空间上比较好的权衡</span>
+<span class="hljs-comment">    较高的负载因子会降低空间开销，但会提高查询开销（在hashmap中就是get和put操作）</span>
+<span class="hljs-comment">    在设置初始容量的时候要考虑到图中所期待的entry数量和负载因子，从而去减少rehash的次数</span>
+<span class="hljs-comment">    如果初始容量大于最大entry数量除以负载因子的结果，那么rehash永远不会发生</span>
+<span class="hljs-comment"></span>
 <span class="hljs-comment"> * &lt;p&gt;If many mappings are to be stored in a &lt;tt&gt;HashMap&lt;/tt&gt;</span>
 <span class="hljs-comment"> * instance, creating it with a sufficiently large capacity will allow</span>
 <span class="hljs-comment"> * the mappings to be stored more efficiently than letting it perform</span>
